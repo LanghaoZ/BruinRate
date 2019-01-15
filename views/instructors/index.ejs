@@ -1,0 +1,53 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    
+    <header class="jumbotron" style="background: #3399f8">
+        
+        <div class="container">
+            
+            <span>
+                <image class="pull-left" style="padding-top: 22px; padding-right: 8px;" src="/icons/Bear-64.png"></image>
+                <h1>Welcome to BruinRate!</h1>
+            </span>
+            
+            <p style="padding-left: 80px">Find ratings for your professor at UCLA!</p>
+            
+            <span>
+                <h6 style="padding-left: 80px">Couldn't find the professor you are looking for?</h6>
+                <p style="padding-left: 80px">
+                    <a class="btn btn-primary btn-small" href="/instructors/new">Add Yours!</a>
+                </p>
+            </span>
+            
+        </div>
+        
+    </header>
+    
+    <div class="row text-center">
+        
+        <% instructors.forEach(function(instructor){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        
+                        <% if (!instructor.image) { %>
+                            <image src="/icons/Avatar-720.png"></image>
+                        <% } else { %>
+                            <image src=<%= instructor.image %>></image>
+                        <% } %>
+                        
+                        <div class="caption">
+                            <h4><%= instructor.name %></h4>
+                        </div>
+                        <p>
+                            <a href="/instructors/<%= instructor._id %>" class="btn btn-primary">View</a>
+                        </p>
+                    </div>
+                </div>
+        <% }) %>
+        
+    </div>
+    
+</div>
+
+<% include ../partials/footer.ejs %>

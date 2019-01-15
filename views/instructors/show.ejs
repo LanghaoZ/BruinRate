@@ -1,0 +1,252 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-md-4">
+            
+            <b><h2 class="lead" id="BruinRate-heading">BruinRate</h2></b>
+            <div id="map"></div>
+            
+        </div>
+        
+        <div class="col-md-8">
+            
+            <% if (!instructor.image) { %>
+                <img class="img-circle img-responsive profile-img" src="/icons/Avatar-720.png">
+            <% } else { %>
+                <img class="img-circle img-responsive profile-img" src="<%= instructor.image %>">
+            <% } %>
+            
+            <h2 style="text-align: center"><%= instructor.name %></h2>
+            
+            <br>
+            
+            <div class="row">
+                
+                <div class="col-md-6 pull-left">
+                    <h4>Ratings</h4>
+                </div>
+                
+                <div class="col-md-6" style="padding-right: 20px; padding-top: 8px;">
+                    <p class="pull-right">from <strong><%= instructor.amount %></strong> users</p>
+                </div>
+                
+            </div>
+            
+            <div class="jumbotron">
+                
+                <div class="row">
+                    
+                    <div class="col-md-3">
+                        <h4 style="float: left">Overall</h4>
+                        <h4 style="float: right"><%= instructor.rating.overall.toFixed(1) %></h4>
+                    </div>
+                    
+                    <div class="col-md-9" style="padding-top: 10px">
+                        
+                        <div class="progress" style="width: 100%; margin: auto;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                            style="width: <%= instructor.rating.overall / 0.05 %>%" aria-valuenow="<%= instructor.rating.overall / 0.05 %>" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="row" style="padding-top: 10px">
+                    
+                    <div class="col-md-3">
+                        <h4 style="float: left">Difficulty</h4>
+                        <h4 style="float: right"><%= instructor.rating.difficulty.toFixed(1) %></h4>
+                    </div>
+                    
+                    <div class="col-md-9" style="padding-top: 10px">
+                        
+                        <div class="progress" style="width: 100%; margin: auto;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                            style="width: <%= instructor.rating.difficulty / 0.05 %>%" aria-valuenow="<%= instructor.rating.difficulty / 0.05 %>" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="row" style="padding-top: 10px">
+                    
+                    <div class="col-md-3">
+                        <h4 style="float: left">Workload</h4>
+                        <h4 style="float: right"><%= instructor.rating.workload.toFixed(1) %></h4>
+                    </div>
+                    
+                    <div class="col-md-9" style="padding-top: 10px">
+                        
+                        <div class="progress" style="width: 100%; margin: auto;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                            style="width: <%= instructor.rating.workload / 0.05 %>%" aria-valuenow="<%= instructor.rating.workload / 0.05 %>" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="row" style="padding-top: 10px">
+                    
+                    <div class="col-md-3">
+                        <h4 style="float: left">Clarity</h4>
+                        <h4 style="float: right"><%= instructor.rating.clarity.toFixed(1) %></h4>
+                    </div>
+                    
+                    <div class="col-md-9" style="padding-top: 10px">
+                        
+                        <div class="progress" style="width: 100%; margin: auto;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                            style="width: <%= instructor.rating.clarity / 0.05 %>%" aria-valuenow="<%= instructor.rating.clarity / 0.05 %>" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="row" style="padding-top: 10px">
+                    
+                    <div class="col-md-3">
+                        <h4 style="float: left">Helpfulness</h4>
+                        <h4 style="float: right"><%= instructor.rating.helpfulness.toFixed(1) %></h4>
+                    </div>
+                    
+                    <div class="col-md-9" style="padding-top: 10px">
+                        
+                        <div class="progress" style="width: 100%; margin: auto;">
+                            <div class="progress-bar bg-warning" role="progressbar" 
+                            style="width: <%= instructor.rating.helpfulness / 0.05 %>%" aria-valuenow="<%= instructor.rating.helpfulness / 0.05 %>" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="text-center">
+                <a class="btn btn-success btn-lg" href="/instructors/<%= instructor._id %>/reviews/new">Add Review</a>
+            </div>
+            
+            <br>
+            
+            <% if (instructor.amount === 0) { %>
+                <div class="well">
+                    <p style="text-align: center">There are currently no reviews available for this instructor. Perhaps you want to add a new one!</p>
+                </div>
+            <% } %>
+            
+            <% instructor.reviews.forEach(function(review){ %>
+            
+                <% if (!!review.rating.comment) { %>
+            
+                    <div class="well">
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-4">
+                                
+                                <% if (review.author.anonymity) { %>
+                                    <p>Submitted by: Anonymous</p>
+                                <% } else { %>
+                                    <div>
+                                        <p style="margin: auto">Submitted by: <a href="/instructors/<%= instructor._id %>"><%= review.author.username %></a></p>
+                                    </div>
+                                <% } %>
+                                
+                                <% if (!!review.objective.course) { %>
+                                    <p style="margin: auto">Course: <%= review.objective.course %> </p>
+                                <% } else { %>
+                                    <p style="margin: auto">Course: N/A</p>
+                                <% } %>
+                                
+                                 <% if (!review.objective.grade) { %>
+                                        <p style="margin: auto">Grade Received: N/A</p>
+                                    <% } else { %>
+                                        <p style="margin: auto"> Grade Received: <%= review.objective.grade %></p>
+                                    <% } %>
+                            </div>
+                            
+                            <div class="col-md-4"></div>
+                            
+                            <div class="col-md-4">
+                                <span class="pull-right"><%= review.date %></span>
+                            </div>
+                            
+                            <form action="/instructors/<%= instructor._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="delete-form">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            
+                        </div>
+                        
+                        <hr>
+                        
+                        <!--Comment-->
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><%= review.rating.comment %></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                <% } %>
+                
+            <% }); %>
+            
+        </div>
+        
+    </div> <!--The row -->
+    
+</div>
+
+<script>
+  function initMap() {
+      
+    var lat = 34.0689;
+    var lng = -118.4452;
+    var center = {lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: center,
+        scrollwheel: false
+    });
+
+    // var map = new google.maps.Map(document.getElementById('map'), {
+    //     zoom: 8,
+    //     center: {lat: 34.0689, lng: -118.4452 },
+    //     scrollwheel: false
+    // });
+    var contentString = "University of California - Los Angeles"
+    
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGbEJj2FslWB6PIatuC3dJ6y0daIgpNtE&callback=initMap"></script>
+
+<% include ../partials/footer.ejs %>

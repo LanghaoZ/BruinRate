@@ -1,0 +1,72 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    
+    <div class="row">
+    
+        <h1>Edit <%= instructor.name %></h1>
+        
+        <form action="/instructors/<%= instructor._id %>?_method=PUT" method="POST">
+            
+            <div class="form-group">
+                <input class="form-control" type="text" name="name" value="<%= instructor.name %>" required>
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control" type="text" name="image" value="<%= instructor.image %>" >
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control" type="text" name="department" value="<%= instructor.department %>" >
+            </div>
+            
+            <p>Amount</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="amount">
+            </div>
+            
+            <p>Overall</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="rating[overall]">
+            </div>
+            
+            <p>Difficulty</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="rating[difficulty]">
+            </div>
+            
+            <p>Workload</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="rating[workload]">
+            </div>
+            
+            <p>Clarity</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="rating[clarity]">
+            </div>
+            
+            <p>Helpfulness</p>
+            
+            <div class="form-group">
+                <input class="form-control" type="number" name="rating[helpfulness]">
+            </div>
+            
+            
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block small-button">Submit</button>
+            </div>
+            
+        </form>
+        
+        <a href="/instructors/<%= instructor._id %>">Go Back</a>
+        
+    </div>
+    
+</div>
+
+<% include ../partials/footer.ejs %>

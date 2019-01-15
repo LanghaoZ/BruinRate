@@ -1,0 +1,47 @@
+.thumbnail img  {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.input-form {
+    width: 30%;
+    margin: 25px auto;
+}
+
+.small-button {
+    width: 20%;
+    margin: auto;
+    padding: 10px;
+}
+
+.profile-img {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+#BruinRate-icon {
+    padding-top: 5px;
+    padding-right: 2px;
+}
+
+#BruinRate-heading {
+    font-size: 270%;
+}
+
+#map {
+    height: 400px;
+    width: 80%;
+}

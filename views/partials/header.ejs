@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        
+        <title>BruinRate</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="/stylesheets/general.css"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/icons/Bear-32.png" />
+        
+    </head>
+    
+    <body>
+        
+        <nav class="navbar navbar-default">
+            
+            <div class="container-fluid">
+                
+                <span class="navbar-header">
+                    <image src="/icons/Bear-32.png" class="pull-left" id="BruinRate-icon"><a href="/"></a></image>
+                    <a class="navbar-brand" href="/">BruinRate</a>
+                </span>
+                
+                <div class="navbar-collapse collapse">
+                    
+                    <ul class="nav navbar-right navbar-nav">
+                        
+                        <% if (!currentUser) { %>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Sign Up</a></li>
+                        <% } else { %>
+                            <li><a href="#">Signed in as <%= currentUser.username %></a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        <% } %>
+                        
+                    </ul>
+                    
+                </div>
+                
+            </div>
+            
+        </nav>
+        
+        <div class="container">
+            
+            <% if (error && error.length > 0) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+            <% } %>
+            
+            <% if (success && success.length > 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %>
+            
+        </div>

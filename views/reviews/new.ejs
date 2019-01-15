@@ -1,0 +1,191 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <h1 style="text-align: center; margin-bottom: 3.5%;">Reviewing <%= instructor.name %></h1>
+        
+        <div class="jumbotron" style="width: 80%; margin: auto; margin-bottom: 5%;">
+        
+            <form style="width: 90%; margin: 25px auto;" action="/instructors/<%= instructor._id %>/reviews", method="POST">
+                
+                <p>Which class did you take with this professor?</p>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="course" placeholder="Course Number" required>
+                </div>
+                
+                <p>When did you take this class?</p>
+                <select class="form-control form-control-sm" name="year">
+                    <option value="" disabled selected>Select a year</option>
+                    <% for (var i=2019; i > 1999; i--) { %>
+                        <option value=<%= i %>><%= i %></option>
+                    <% } %>
+                </select>
+                
+                <br>
+                
+                <p>Which quarter?</p>
+                <select class="form-control form-control-sm" name="quarter">
+                    <option value="" disabled selected>Select a quarter</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                </select>
+                
+                <br>
+                
+                <p>What grade did you receive?</p>
+                <select class="form-control form-control-sm" name="grade" id="letter-grade">
+                    <option value="" disabled selected>Select your option</option>
+                    <% let gradeArr = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "Pass", "No Pass", "Incomplete"]; %>
+                    <% for (var i = 0; i < 16; i++) { %>
+                        <option value=<%= gradeArr[i] %>><%= gradeArr[i] %></option>
+                    <% } %>
+                </select>
+                
+                <br>
+                <br>
+                
+                <p>Please rank the following metrics:</p>
+                
+                <hr style="height: 1px; color: grey; background-color: grey;">
+                
+                <div class="row">
+                    
+                    <p style="text-align: center">Overall</p>
+                    
+                    <div class="row" style="width: 90%; margin: auto">
+                    
+                        <div class="col-md-3">
+                            <p style="padding-left: 16px">Bad</p>
+                        </div>
+                        
+                        <% for (var i = 1; i < 6; i++) { %>
+                            <div class="custom-control custom-radio custon-control-inline col-md-1" style="padding-top: 4px">
+                                <input type="radio" id="<%= i %>" name="overall" class="custom-control-input" value=<%= i %> required>
+                                <label class="custom-control-label" for="<%= i %>"><%= i %></label>
+                            </div>
+                        <% } %>
+                        
+                        <div class="col-md-4" style="text-align: center">
+                            <p>Good</p>
+                        </div>
+                    
+                    </div>
+                    
+                    <p style="text-align: center">Difficulty</p>
+                    
+                    <div class="row" style="width: 90%; margin: auto">
+                    
+                        <div class="col-md-3">
+                            <p style="padding-left: 16px">Easy</p>
+                        </div>
+                        
+                        <% for (var i = 1; i < 6; i++) { %>
+                            <div class="custom-control custom-radio custon-control-inline col-md-1" style="padding-top: 4px">
+                                <input type="radio" id="<%= i %>" name="difficulty" class="custom-control-input" value=<%= i %> required>
+                                <label class="custom-control-label" for="<%= i %>"><%= i %></label>
+                            </div>
+                        <% } %>
+                        
+                        <div class="col-md-4" style="text-align: center">
+                            <p>Difficult</p>
+                        </div>
+                    
+                    </div>
+                    
+                    <p style="text-align: center">Workload</p>
+                    
+                    <div class="row" style="width: 90%; margin: auto">
+                    
+                        <div class="col-md-3">
+                            <p style="padding-left: 16px">Light</p>
+                        </div>
+                        
+                        <% for (var i = 1; i < 6; i++) { %>
+                            <div class="custom-control custom-radio custon-control-inline col-md-1" style="padding-top: 4px">
+                                <input type="radio" id="<%= i %>" name="workload" class="custom-control-input" value=<%= i %> required>
+                                <label class="custom-control-label" for="<%= i %>"><%= i %></label>
+                            </div>
+                        <% } %>
+                        
+                        <div class="col-md-4" style="text-align: center">
+                            <p>Heavy</p>
+                        </div>
+                    
+                    </div>
+                    
+                    <p style="text-align: center">Clarity</p>
+                    
+                    <div class="row" style="width: 90%; margin: auto">
+                    
+                        <div class="col-md-3">
+                            <p>Not Clear</p>
+                        </div>
+                        
+                        <% for (var i = 1; i < 6; i++) { %>
+                            <div class="custom-control custom-radio custon-control-inline col-md-1" style="padding-top: 4px">
+                                <input type="radio" id="<%= i %>" name="clarity" class="custom-control-input" value=<%= i %> required>
+                                <label class="custom-control-label" for="<%= i %>"><%= i %></label>
+                            </div>
+                        <% } %>
+                        
+                        <div class="col-md-4" style="text-align: center">
+                            <p>Clear</p>
+                        </div>
+                    
+                    </div>
+                    
+                    <p style="text-align: center; padding-left: 10px;">Helpfulness</p>
+                    
+                    <div class="row" style="width: 90%; margin: auto">
+                    
+                        <div class="col-md-3">
+                            <p>Not Helpful</p>
+                        </div>
+                        
+                        <% for (var i = 1; i < 6; i++) { %>
+                            <div class="custom-control custom-radio custon-control-inline col-md-1" style="padding-top: 4px">
+                                <input type="radio" id="<%= i %>" name="helpfulness" class="custom-control-input" value=<%= i %> required>
+                                <label class="custom-control-label" for="<%= i %>"><%= i %></label>
+                            </div>
+                        <% } %>
+                        
+                        <div class="col-md-4" style="text-align: center">
+                            <p>Helpful</p>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+                
+                <hr style="height: 1px; color: grey; background-color: grey;">
+                
+                <p>Any comments for this professor?</p>
+                
+                <div class="form-group">
+                    <textarea type="text" name="comments" rows="8" cols="100"></textarea>
+                </div>
+                
+                <div class="form-group pull-right">
+                    <input type="checkbox" name="anonymity"> Submit Anonymously
+                </div>
+                
+                <br>
+                
+                <!--About to submit-->
+                
+                <div class="form-group" style="margin-top: 5%">
+                    <button class="btn btn-lg btn-primary btn-block small-button">Submit!</button>
+                </div>
+                
+            </form>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+<% include ../partials/footer.ejs %>
