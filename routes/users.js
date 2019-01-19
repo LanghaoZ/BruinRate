@@ -3,8 +3,39 @@ var nodemailer = require('nodemailer');
 var asy = require('async');
 var crypto = require('crypto');
 var User = require('../models/user');
+var Review = require('../models/review');
 
 var router = express.Router();
+
+// User Profile Page
+
+router.get("/users/:user_id", function(req, res){
+    
+    User.findById(req.params.user_id, function(err, user){
+        if (err) {
+            req.flash("error", err.message);
+            return res.redirect("back");
+        }
+        
+        if (!user) {
+            req.flash("error", "This user does not exist");
+            return res.redirect("back");
+        }
+        
+        Review.find({"author.id" : user._id}, function(err, reviews){
+            if (err) {
+                req.flash("error", err.message);
+                return res.redirect("back");
+            }
+            
+            if (!reviews) {
+                reviews = []
+            }
+            
+            res.render("users/show.ejs", {user: user, reviews: reviews, currentUser: req.user});
+        });
+    });
+});
 
 router.get("/forgot", function(req, res){
     res.render("users/forgot.ejs");

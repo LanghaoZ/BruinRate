@@ -165,7 +165,7 @@
                                     <p>Submitted by: Anonymous</p>
                                 <% } else { %>
                                     <div>
-                                        <p style="margin: auto">Submitted by: <a href="/instructors/<%= instructor._id %>"><%= review.author.username %></a></p>
+                                        <p style="margin: auto">Submitted by: <a href="/users/<%= review.author.id %>"><%= review.author.username %></a></p>
                                     </div>
                                 <% } %>
                                 

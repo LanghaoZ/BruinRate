@@ -9,8 +9,8 @@ var UserSchema = new mongoose.Schema({
     avatar: {type: String, default: "https://t4.ftcdn.net/jpg/02/12/14/09/240_F_212140955_Q9fljRsrQf9RRNughd43Csi6zWvJn5d4.jpg"},
     isAdmin: {type: Boolean, default: false},
     resetPasswordToken: String,
-    resetPasswordExpires: Date
-    
+    resetPasswordExpires: Date,
+    about: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

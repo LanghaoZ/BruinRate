@@ -1,0 +1,100 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-md-4">
+            
+            <div class="thumbnail">
+                
+                <h1 style="text-align: center"><%= user.username %></h1>
+                
+                <hr>
+            
+                <% if (!user.avatar) { %>
+                    <img src="/icons/UserAvatar.jpg" alt="user profile image">
+                <% } else { %>
+                    <img src="<%= user.avatar %>" alt="user profile image">
+                <% } %>
+                
+                
+            </div>
+            
+        </div>
+        
+        <div class="col-md-8">
+            
+            <% if (reviews.length === 0) { %>
+                <h2><%= user.username %> currently has no reviews</h2>
+            <% } else {%>
+            
+                <h2><%= user.username %>'s reviews:</h2>
+            
+            <% } %>
+            
+            <% reviews.forEach(function(review){ %>
+                
+                <div class="panel panel-default">
+                    
+                    <div class="panel-heading">
+                        
+                        <div class="row" style="margin-top: 1%">
+                            
+                            <div class="col-md-4">
+                                
+                                <% if (!review.objective.course) { %>
+                                    <p>Unknown course (<%= review.objective.instructor %>)</p>
+                                <% } else { %>
+                                    <p><%= review.objective.course %> (<%= review.objective.instructor %>)</p>
+                                <% } %>
+                                
+                            </div>
+                            
+                            <div class="col-md-4">
+                                
+                                <p style="text-align: center">Overall: <%= review.rating.overall.toFixed(1) %></p>
+                                
+                            </div>
+                            
+                            <div class="col-md-4">
+                                
+                                <p class="pull-right">Submitted at <%= review.date %></p>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                        <% if (currentUser && currentUser._id.equals(user._id)) { %>
+                        
+                            <a class="btn btn-xs btn-warning" href="/instructors/<%= review.instructorId %>/reviews/<%= review._id %>/edit">Edit</a>
+                        
+                            <form action="/instructors/<%= review.instructorId %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="delete-form">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            
+                        <% } %>
+                        
+                    </div>
+                    
+                    <div class="panel-body">
+                        
+                        <% if (!review.rating.comment || review.rating.comment.length === 0) { %>
+                            <p><%= user.username %> left no comment for this instructor</p>
+                        <% } else { %>
+                            <p><%= review.rating.comment %></p>
+                        <% } %>
+                        
+                    </div>
+                    
+                </div>
+                
+            <% }) %>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+<% include ../partials/footer.ejs %>

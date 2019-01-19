@@ -25,7 +25,11 @@ var ReviewSchema = new mongoose.Schema({
         helpfulness: {type: Number, default: 0},
         comment: String
     },
-    date: String
+    date: String,
+    instructorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Instructor"
+    }
 });
 
 module.exports = mongoose.model("Review", ReviewSchema);

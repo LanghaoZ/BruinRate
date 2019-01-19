@@ -62,7 +62,8 @@ router.post("/instructors/:instructor_id/reviews", middleware.isLoggedIn, functi
                 author: newAuthor,
                 objective: newObjective,
                 rating: newRating,
-                date: moment(new Date()).format('MM/DD/YYYY')
+                date: moment(new Date()).format('MM/DD/YYYY'),
+                instructorId: instructor._id
             };
             
             Review.create(newReview, function(err, review){
