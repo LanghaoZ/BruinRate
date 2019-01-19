@@ -4,7 +4,8 @@
   "description": "My implementation of a ratemyprofessor-like rating web app for UCLA",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Langhao Zhong",
   "license": "ISC",
