@@ -7,15 +7,38 @@ var router = express.Router();
 
 // Home Route: Lists all instructors
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 router.get("/instructors", function(req, res){
-    Instructor.find({}, function(err, instructors){
-        if (err) {
-            req.flash("error", err.message);
-            return res.redirect("back");
-        }
+    
+    if (req.query.search) {
+        const searchText = new RegExp(escapeRegex(req.query.search), 'gi');
         
-        res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user});
-    });
+        Instructor.find({name: searchText}, function(err, instructors){
+            if (err) {
+                req.flash("error", err.message);
+                return res.redirect("back");
+            }
+            
+            if (instructors.length === 0) {
+                req.flash("error", "Opps, nothing seems to match you search...");
+            }
+            
+            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user});
+        });
+    } else {
+    
+        Instructor.find({}, function(err, instructors){
+            if (err) {
+                req.flash("error", err.message);
+                return res.redirect("back");
+            }
+            
+            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user});
+        });
+    }
 });
 
 // Create Routes: New Instructors

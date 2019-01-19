@@ -17,24 +17,51 @@
             
             <div class="container-fluid">
                 
-                <span class="navbar-header">
-                    <image src="/icons/Bear-32.png" class="pull-left" id="BruinRate-icon"><a href="/"></a></image>
-                    <a class="navbar-brand" href="/">BruinRate</a>
-                </span>
-                
-                <div class="navbar-collapse collapse">
+                <div class="row">
                     
-                    <ul class="nav navbar-right navbar-nav">
+                    <div class="col-md-4">
+                
+                        <span class="navbar-header">
+                            <image src="/icons/Bear-32.png" class="pull-left" id="BruinRate-icon"><a href="/"></a></image>
+                            <a class="navbar-brand" href="/">BruinRate</a>
+                        </span>
                         
-                        <% if (!currentUser) { %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Sign Up</a></li>
-                        <% } else { %>
-                            <li><a href="#">Signed in as <%= currentUser.username %></a></li>
-                            <li><a href="/logout">Logout</a></li>
-                        <% } %>
+                    </div>
+                    
+                    <div class="col-md-4">
+                    
+                        <form action="/instructors" method="GET" class="form-inline my-2 my-lg-0" style="margin-left: 4%; margin-top: 2%;">
+                            
+                            <div class="form-group">
+                                
+                                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Instructors" size="40">
+                                <input type="submit" value="Search" class="btn btn-success my-2 my-sm-0">
+                                
+                            </div>
+                            
+                        </form>
                         
-                    </ul>
+                    </div>
+                    
+                    <div class="col-md-4">
+                    
+                        <div class="navbar-collapse collapse">
+                            
+                            <ul class="nav navbar-right navbar-nav">
+                                
+                                <% if (!currentUser) { %>
+                                    <li><a href="/login">Login</a></li>
+                                    <li><a href="/register">Sign Up</a></li>
+                                <% } else { %>
+                                    <li><a href="#">Signed in as <%= currentUser.username %></a></li>
+                                    <li><a href="/logout">Logout</a></li>
+                                <% } %>
+                                
+                            </ul>
+                            
+                        </div>
+                        
+                    </div>
                     
                 </div>
                 
