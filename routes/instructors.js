@@ -13,6 +13,8 @@ function escapeRegex(text) {
 
 router.get("/instructors", function(req, res){
     
+    let queryResult = "";
+    
     if (req.query.search) {
         const searchText = new RegExp(escapeRegex(req.query.search), 'gi');
         
@@ -23,11 +25,12 @@ router.get("/instructors", function(req, res){
             }
             
             if (instructors.length === 0) {
-                req.flash("error", "Opps, nothing seems to match you search...");
+                queryResult = "No matches for your search..."
             }
             
-            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user});
+            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user, queryResult: queryResult});
         });
+        
     } else {
     
         Instructor.find({}, function(err, instructors){
@@ -36,7 +39,7 @@ router.get("/instructors", function(req, res){
                 return res.redirect("back");
             }
             
-            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user});
+            res.render("instructors/index.ejs", {instructors: instructors, currentUser: req.user, queryResult: queryResult});
         });
     }
 });

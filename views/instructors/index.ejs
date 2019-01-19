@@ -26,6 +26,10 @@
     
     <div class="row text-center">
         
+        <% if (!!queryResult) { %>
+            <h3><%= queryResult %></h3>
+        <% } %>
+        
         <% instructors.forEach(function(instructor){ %>
                 <div class="col-md-3 col-sm-6">
                     <div class="thumbnail">
