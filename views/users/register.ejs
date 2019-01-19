@@ -1,0 +1,47 @@
+<% include ../partials/header.ejs %>
+
+    <div class="row">
+        
+        <h1 style="text-align: Center">Sign Up</h1>
+        
+        <div class="input-form">
+            
+            <form action="/register" method="POST">
+                
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required>
+                </div>
+                
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+                </div>
+                
+                <hr>
+                
+                <h4>Additional Infomation (Optional)</h4>
+                
+                <div class="form-group">
+                    <input class="form-control" type="text" name="fullname" placeholder="Your Name">
+                </div>
+                
+                <div class="form-group">
+                    <input class="form-control" type="text" name="avatar" placeholder="Avatar Url">
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block small-button">Sign Up</button>
+                </div>
+                
+            </form>
+            
+            <a href="/instructors">Go Back</a>
+            
+        </div>
+        
+    </div>
+
+<% include ../partials/footer.ejs %>
