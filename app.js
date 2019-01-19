@@ -9,8 +9,8 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 
 var app = express();
-// mongoose.connect("mongodb://localhost/bruinrate", {useNewUrlParser: true});
-mongoose.connect("mongodb://langhao:zhong374@ds161794.mlab.com:61794/bruinrate", {useNewUrlParser: true});
+
+mongoose.connect(process.env.DATABASELOCATION, {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
