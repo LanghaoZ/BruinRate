@@ -5,11 +5,14 @@ var moment = require('moment');
 
 var router = express.Router();
 
-// Home Route: Lists all instructors
+// Helper Functions
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
+
+
+// Home Route: Lists all instructors
 
 router.get("/instructors", function(req, res){
     

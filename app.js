@@ -50,10 +50,12 @@ app.use(function(req, res, next){
 var instructorRoutes = require('./routes/instructors');
 var reviewRoutes = require('./routes/reviews');
 var indexRoutes = require('./routes/index');
+var userRoutes = require('./routes/users');
 
 app.use(indexRoutes);
 app.use(instructorRoutes);
 app.use(reviewRoutes);
+app.use(userRoutes);
 
 // The BruinRate Server
 
