@@ -11,7 +11,7 @@ var Instructor = require('../models/instructor');
 // The main route
 
 router.get("/", function(req, res){
-    res.render("landing.ejs");
+    res.render("home.ejs");
 });
 
 // Register: CREATE ROUTE
