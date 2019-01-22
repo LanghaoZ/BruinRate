@@ -32,8 +32,23 @@
         
         <div id="landing-header">
             
-            <h1>Welcome to BruinRate!</h1>
-            <a href="/instructors" class="btn btn-lg btn-success">Click Here to View All Instructors</a>
+            <h1 style="color: white">Welcome to BruinRate!</h1>
+            
+            <form action="/instructors" method="GET" class="form-inline my-2 my-lg-0" style="margin-left: 4%; margin-top: 2%;">
+                                
+                <div class="form-group">
+                                    
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Instructors" size="80%" style="height: 40px; width: 80%; margin: 0 auto">
+                    <input type="submit" value="Search" class="btn btn-success my-2 my-sm-0" style="height: 40px; margin: auto">
+                                    
+                </div>
+                                
+            </form>
+            
+            
+            
+            
+            <a href="/instructors" class="btn btn-lg btn-success" style="margin: auto; margin-top: 1%;">Click Here to View All Instructors</a>
             
         </div>
         
