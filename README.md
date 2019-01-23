@@ -13,7 +13,7 @@ To see the app in action, go to [https://bruinrate.herokuapp.com/](https://bruin
 ### Clone or download this repository
 
 ```sh
-git clone https://github.com/lucasweng/yelp-camp.git
+git clone https://github.com/LanghaoZ/BruinRate.git
 ```
 
 ### Install dependencies
