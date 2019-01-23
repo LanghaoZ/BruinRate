@@ -4,4 +4,4 @@ A ratemyprofessor style rating web application that allows users to rate profess
 
 ## Live Demo
 
-To see the app in action, go to [https://yelpcamp--demo.herokuapp.com/](https://yelpcamp--demo.herokuapp.com/)
+To see the app in action, go to [https://bruinrate.herokuapp.com/](https://bruinrate.herokuapp.com/)
